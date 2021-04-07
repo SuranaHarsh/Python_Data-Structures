@@ -1,3 +1,3 @@
 # Python_Data-Structures
 
-In this Section i am coding in Python to understand various data structures in the Python Language
+In this Section I am coding to understand various data structures and how they are implemented in the Python Language.
