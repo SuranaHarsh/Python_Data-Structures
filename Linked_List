@@ -1,0 +1,92 @@
+# Creating the underline node and linked list data structure and algorithms for Pyhton.
+
+# First data structure being implemented is the node class
+
+
+class node:
+    def __init__(self, data=None):
+        self.data = data           # Storing past data point
+        self.next = None           # Pointer to next node
+
+
+# Next Data structure will be the Linked List Class, Basically the wrapper over the node class.
+class linked_list:
+    def __init__(self):
+        self.head = node()         # Head node will never contain any data. It just points to first element in the list.
+
+    # Append function will help to add a new data point to the end of current list
+    def append(self, data):
+        new_node = node(data)
+        cur = self.head            # Variable to store current node location.
+        while cur.next != None:
+            cur = cur.next
+        cur.next = new_node
+
+    # Function to figure the length of our linked list.
+    def length(self):
+        cur = self.head
+        total = 0
+        while cur.next != None:
+            total += 1
+            cur = cur.next
+        return total
+
+    # Function to display current contents of our list
+    def display(self):
+        elems = []
+        cur_node = self.head
+        while cur_node.next != None:
+            cur_node = cur_node.next
+            elems.append(cur_node.data)
+        print(elems)
+
+    # Function to pull out a data point at a certain index from the linked list.
+    def get(self, index):
+        if index >= self.length():
+            print("ERROR: 'Get' Index out of range!")
+            return None
+        cur_idx = 0
+        cur_node = self.head
+        while True:
+            cur_node = cur_node.next
+            if cur_idx == index:
+                return cur_node.data
+            cur_idx += 1
+
+    # Function to erase a node at certain index
+    def erase(self, index):
+        if index >= self.length():
+            print("ERROR: 'Erase' Index out of range!")
+            return None
+        cur_idx = 0
+        cur_node = self.head
+        while True:
+            last_node = cur_node
+            cur_node = cur_node.next
+            if cur_idx == index:
+                last_node.next = cur_node.next
+                return
+            cur_idx += 1
+
+
+my_list = linked_list()
+
+# Adding data in the linked list
+my_list.append(0)
+my_list.append(1)
+my_list.append(2)
+my_list.append(3)
+my_list.append(4)
+
+# Dsiplaying the linked list
+my_list.display()
+
+# Erasing element at index 1 of the linked list
+my_list.erase(1)
+
+my_list.display()
+
+# Printing the element at a certaion index of the linked list
+print("Element at 2nd index: %d" % my_list.get(2))
+
+
