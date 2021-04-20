@@ -1,0 +1,65 @@
+# Performance benchmark comparison for Dictionary and List data structures.
+# We will first create a dataset and then use that for benchmark.
+
+import time
+
+# List of names to choose for random generation of file. Number of names will effect performance of data structure
+class_names = ["Jack", "Jill", "Romeo", "Juliet", "Peter",
+               "Mary", "Ram", "Sita", "Krishna", "Radha",
+               "Shiv", "Sati", "Harsh", "Riddhi"]
+
+
+# Function to create a random dataset from
+def create_dataset():
+    import random
+    # Number of entries for the file to be created. This effects the scale of performance
+    num_entries = 10000000
+    # Create a text file in write mode with specified number of random entries
+    f = open("data.txt", "w")
+    for i in range(num_entries):
+        current = random.choice(class_names)
+        f.write(current + "\n")
+    f.close()
+
+
+# Function to read the dataset using List.
+def read_dataset_list():
+    class_counts = []
+    for _ in class_names:
+        class_counts.append(0)
+    with open("data.txt", "r") as f:
+        for line in f:
+            line = line.strip()
+            if line != "":
+                class_counts[class_names.index(line)] += 1
+    print(class_counts)
+
+
+# Function to read the dataset using Dictionary.
+def read_dataset_dict():
+    class_counts = {}
+    for c in class_names:
+        class_counts[c] = 0
+    with open("data.txt", "r") as f:
+        for line in f:
+            line = line.strip()
+            if line != "":
+                class_counts[line] += 1
+    print(class_counts)
+
+
+# Time Benchmarking for Creation, Reading through List and Dictionary
+t0 = time.time()
+create_dataset()
+t1 = time.time()
+print("Dataset creation took %0.1f seconds\n" % (t1-t0))
+
+t0 = time.time()
+read_dataset_list()
+t1 = time.time()
+print("List took %0.1f seconds\n" % (t1-t0))
+
+t0 = time.time()
+read_dataset_dict()
+t1 = time.time()
+print("Dictionary took %0.1f seconds\n" % (t1-t0))
