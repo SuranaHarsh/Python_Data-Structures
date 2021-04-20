@@ -6,7 +6,7 @@ import time
 # List of names to choose for random generation of file. Number of names will effect performance of data structure
 class_names = ["Jack", "Jill", "Romeo", "Juliet", "Peter",
                "Mary", "Ram", "Sita", "Krishna", "Radha",
-               "Shiv", "Sati", "Harsh", "Riddhi"]
+               "Shiv", "Sati"]
 
 
 # Function to create a random dataset from
