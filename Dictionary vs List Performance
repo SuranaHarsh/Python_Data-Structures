@@ -62,4 +62,5 @@ print("List took %0.1f seconds\n" % (t1-t0))
 t0 = time.time()
 read_dataset_dict()
 t1 = time.time()
-print("Dictionary took %0.1f seconds\n" % (t1-t0))
+final_time = t1 - t0
+print("Dictionary took %0.1f seconds\n" % final_time)
